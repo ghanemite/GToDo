@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{block.super}} - Your Lists
+{% endblock title %}
+
+{% block content %}
+<div>
+    <h2>Your Lists page</h2>
+</div>
+<div>
+    {% if lists %}
+        <ul>
+        {% for list in lists %}
+           <li>
+                <h3 class="big">
+                    <a href="{{list.get_absolute_url}}">
+                        {{ list.list_name|title }}
+                    </a>
+                </h3>
+                <p>The list have {{list.items.count}} item{{list.items.count|pluralize}}</p>
+                <p>created at: {{list.date_created}}</p>
+                <p>
+                    <a href="{{list.get_update_url}}" class='approve'>Add new Item</a>
+                    <span> </span>
+                    <a href="{{list.get_delete_url}}" class="danger">Delete the List</a>
+                </p>
+           </li> 
+        {% endfor %}
+        </ul>
+    {% else %}
+    <h3>You don't have any to do yet</h3>
+    {% endif %}
+               
+</div>
+{% endblock content %}
+    

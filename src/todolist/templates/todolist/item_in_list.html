@@ -1,0 +1,17 @@
+<div class="{% if item.done %}done{% endif %}">
+    <h3>{{item.title}}</h3>
+    <p>{{item.description}}</p>
+    {% if item.done %}
+        <p class="big">Successfuly Done</p>
+        <a href="{{item.get_redone_url}}" style="color:black">Undone</a>
+        <span> | </span>
+        <a href="{{item.get_delete_url}}" class="danger">Delete the Item</a>
+    {% else %}
+        <p>Waiting...</p>
+        <p>
+            <a href="{{item.get_absolute_url}}" class="approve">Item Done</a>
+            <span> | </span>
+            <a href="{{item.get_delete_url}}" class="danger">Delete the Item</a>
+        </p>
+    {% endif %}
+</div> 

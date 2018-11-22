@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ block.super }} - List {{list.list_name}}
+{% endblock title %}
+
+{% block content %}
+{% if list %}
+<div>
+    <h2>
+        <a href="{{list.get_absolute_url}}">
+            {{ list.list_name|title }}
+        </a>
+    </h2>
+    <p>The list have item{{list.items.count|pluralize}}</p>
+    <p>created at: {{list.date_created}}</p>
+    <p>
+        <a href="{{list.get_update_url}}" class="approve">Add new Item</a>
+        <span> |  </span>
+        <a href="{{list.get_delete_url}}" class="danger">Delete the List</a>
+    </p>
+</div>
+<div>
+    {% if list.items.all %}
+        <h3>Your Items</h3> 
+        <ul>
+            {% for item in list.items.all %}
+            <li>
+                {% include "todolist/item_in_list.html"  %}
+            </li>
+            {% endfor %}
+            </ul>
+    {% else %}
+        <h5>No items yet in the list yet</h5>
+    {% endif %}
+</div>
+{% endif %}
+{% endblock content %}

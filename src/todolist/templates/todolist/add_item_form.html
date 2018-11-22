@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ block.super }} - Add Item to {{list.list_name}}
+{% endblock title %}
+
+{% block content %}
+{% if list %}
+<div>
+    <h2>
+        <a href="{{list.get_absolute_url}}">
+            {{ list.list_name|title }}
+        </a>
+    </h2>
+    <p>The list have item{{list.items.count|pluralize}}</p>
+    <p>created at: {{list.date_created}}</p>
+    <p>
+        <a href="#" class="approve">Add new Item</a>
+        <span> </span>
+        <a href="{{list.get_delete_url}}" class="danger">Delete the List</a>
+    </p>
+</div>
+<div>
+    <h4 class="Approve">Add new item</h4>
+    <form action="#" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <a href="{{list.get_absolute_url}}">cancel</a>
+        <button type="submit" class="approve">Add Atime</button>
+    </form>
+</div>
+<div>
+    {% if list.items.all %}
+    <h3>Items to be done</h3>
+    <ul>
+        {% for item in list.items.all %}
+        <li>
+            {% include "todolist/item_in_list.html" %} 
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+{% endif %}
+{% endblock content %}

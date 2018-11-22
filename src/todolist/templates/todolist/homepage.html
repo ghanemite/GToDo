@@ -1,0 +1,24 @@
+{% extends parent_template|default:'base.html' %}
+
+{% block title %}
+    {{ block.super }} - Home
+{% endblock title %}
+
+
+{% block content %}
+    Welcome to your To Do home page 
+    
+    {% if todolists %}
+        <p>You have {{todolists}} ToDo List</p>
+        <p class="big">
+            <a href="{% url 'lists_list' %}">Go to your lists page</a>
+        </p>
+    {% else %}
+       <p>
+        <p class="big">You have not Todo lists yet</p>
+        <a href="{% url 'create_todo_list' %}">Create your first Todo List</a>
+       </p>
+    {% endif %}
+        
+{% endblock content %}
+    

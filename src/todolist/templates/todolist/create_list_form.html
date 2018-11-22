@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    {{block.super}} - Create new ToDo List
+{% endblock title %}
+
+
+{% block content %}
+    <h2>Create Todo List</h2>
+    <form action="{% url 'create_todo_list' %}" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Create List</button>
+    </form>
+{% endblock content %}
+    
