@@ -30,7 +30,6 @@ class CreateTodoListView(View):
     form_class = CreateToDoListForm
 
     def get(self, request):
-        
         form = self.form_class()
         return render(request, self.template_name, {'form':form})
 
@@ -110,7 +109,7 @@ def item_done(request, pk):
     my_list = item.parent
     return redirect(my_list)
 
-def item_redone(request, pk):
+def item_undone(request, pk):
     item = get_object_or_404(ToDoItem, pk=pk)
     item.done = False
     item.save()
