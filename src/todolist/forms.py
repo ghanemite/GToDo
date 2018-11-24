@@ -56,7 +56,7 @@ class AddItemForm(forms.ModelForm):
         new_d = self.cleaned_data['description']
         if new_d != '' and len(new_d) < 6:
             raise ValidationError(
-                "The Item title can not be less than 6 letters")
+                "The Item description can not be less than 6 letters")
         if len(new_d) > 0:
             return new_d
 

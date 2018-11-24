@@ -48,5 +48,5 @@ class ToDoItem(models.Model):
     def get_update_url(self):
         pass
         
-    def get_redone_url(self):
-        return reverse('item_redone', kwargs={'pk': self.pk})
+    def get_undone_url(self):
+        return reverse('item_undone', kwargs={'pk': self.pk})
